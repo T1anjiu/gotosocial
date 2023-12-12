@@ -22,6 +22,14 @@
         To use this template, pass a web view status into it.
 */ -}}
 
+{{- define "votes" -}}
+    {{- if eq . 1 -}}
+        {{- . -}}&nbsp;vote
+    {{- else -}}
+        {{- . }}&nbsp;votes
+    {{- end -}}
+{{- end -}}
+
 {{- with . }}
 <figure class="poll">
     <figcaption class="poll-info">
@@ -32,34 +40,33 @@
             Poll&nbsp;
             {{- end -}}
             {{- if .Poll.Expired -}}
-            closed {{ .Poll.ExpiresAt | timestampPrecise -}}
+            closed <time datetime="{{- .Poll.ExpiresAt -}}">{{- .Poll.ExpiresAt | timestampPrecise -}}</time>
             {{- else if .Poll.ExpiresAt -}}
-            open until {{ .Poll.ExpiresAt | timestampPrecise -}}
+            open until <time datetime="{{- .Poll.ExpiresAt -}}">{{- .Poll.ExpiresAt | timestampPrecise -}}</time>
             {{- else -}}
             open forever
             {{- end -}}
         </span>
-        <span class="total-votes">Total votes: {{ .Poll.VotesCount }}</span>
+        <br/>
+        <span class="total-votes">{{- template "votes" .Poll.VotesCount -}}&nbsp;total</span>
     </figcaption>
     <ul class="poll-options">
     {{- range $index, $pollOption := .WebPollOptions }}
         <li class="poll-option">
-            <label aria-hidden="true" for="poll-{{- $pollOption.PollID -}}-option-{{- increment $index -}}" lang="{{- .LanguageTag.TagStr -}}">{{- emojify .Emojis (noescape $pollOption.Title) -}}</label>
-            <meter aria-hidden="true" id="poll-{{- $pollOption.PollID -}}-option-{{- increment $index -}}" min="0" max="100" value="{{- $pollOption.VoteShare -}}">{{- $pollOption.VoteShare -}}&#37;</meter>
-            <div class="sr-only">Option {{ increment $index }}:&nbsp;<span lang="{{ .LanguageTag.TagStr }}">{{ emojify .Emojis (noescape $pollOption.Title) -}}</span></div>
+            <label lang="{{- .LanguageTag.TagStr -}}">
+                <dl>
+                    <dt class="sr-only">Option&nbsp;{{- increment $index -}}</dt>
+                    <dd>{{- emojify .Emojis (noescape $pollOption.Title) -}}</dd>
+                </dl>
+                <meter aria-hidden="true" min="0" max="100" value="{{- $pollOption.VoteShare -}}"></meter>
+            </label>
             <div class="poll-vote-summary">
                 {{- if isNil $pollOption.VotesCount }}
                 <span>Results not yet published.</span>
                 {{- else }}
                 {{- with deref $pollOption.VotesCount }}
                 <span class="poll-vote-share">{{- $pollOption.VoteShareStr -}}&#37;</span>
-                <span class="poll-vote-count">
-                    {{- if eq . 1 -}}
-                        {{- . }} vote
-                    {{- else -}}
-                        {{- . }} votes
-                    {{- end -}}
-                </span>
+                <span class="poll-vote-count">{{- template "votes" . -}}</span>
                 {{- end }}
                 {{- end }}
             </div>

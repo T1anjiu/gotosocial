@@ -27,6 +27,7 @@
 
 {{- with . }}
 <header class="status-author">
+    <h4 class="sr-only">Post by</h4>
     {{- include "status_author.tmpl" . | indent 1 | noescape }}
 </header>
 <section class="status-body">

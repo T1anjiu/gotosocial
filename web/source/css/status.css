@@ -486,37 +486,37 @@ main {
 	}
 
 	.status-info {
-		display: flex;
 		background: $status-info-bg;
 		color: $fg-reduced;
 		border-top: 0.15rem solid $status-info-border;
 		padding: 0.5rem 0.75rem;
 
-		time {
-			padding-right: 1rem;
-		}
-
-		.stats {
-			display: inline-flex;
-			flex: 1;
-			gap: 1rem;
+		.status-stats, {
+			display: flex;
+			flex-wrap: wrap;
+			column-gap: 1rem;
 			
+			.stats-grouping {
+				display: flex;
+				gap: 1rem;
+			}
+
 			.stats-item {
-				span {
-					white-space: nowrap;
-				}
+				display: flex;
+				gap: 0.4rem;
+			}
+
+			.stats-item:not(.published-at) {
+				z-index: 1;
+				user-select: none;
 			}
 
 			.language {
 				margin-left: auto;
-				z-index: 1;
-				cursor: pointer;
-				user-select: none;
 			}
 		}
 
 		grid-column: span 3;
-		flex-wrap: wrap;
 	}
 
 	.status-link {

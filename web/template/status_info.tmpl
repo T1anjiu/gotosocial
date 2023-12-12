@@ -18,36 +18,55 @@
 */ -}}
 
 {{- with . }}
-<dl class="sr-only">
-    <dt>Published<dt>
-    <dd>{{- .CreatedAt | timestampPrecise -}}</dd>
+<dl class="status-stats">
+    <div class="stats-item published-at text-cutoff">
+        <dt class="sr-only">Published</dt>
+        <dd>
+            <time datetime="{{- .CreatedAt -}}">{{- .CreatedAt | timestampPrecise -}}</time>
+        </dd>
+    </div>
+    <div class="stats-grouping">
+        <div class="stats-item" title="Replies">
+            <dt>
+                <span class="sr-only">Replies</span>
+                <i class="fa fa-reply-all" aria-hidden="true"></i>
+            </dt>
+            <dd>{{- .RepliesCount -}}</dd>
+        </div>
+        <div class="stats-item" title="Faves">
+            <dt>
+                <span class="sr-only">Favourites</span>
+                <i class="fa fa-star" aria-hidden="true"></i>
+            </dt>
+            <dd>{{- .FavouritesCount -}}</dd>
+        </div>
+        <div class="stats-item" title="Boosts">
+            <dt>
+                <span class="sr-only">Reblogs</span>
+                <i class="fa fa-retweet" aria-hidden="true"></i>
+            </dt>
+            <dd>{{- .ReblogsCount -}}</dd>
+        </div>
+        {{- if .Pinned }}
+        <div class="stats-item" title="Pinned">
+            <dt>
+                <span class="sr-only">Pinned</span>
+                <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+            </dt>
+            <dd class="sr-only">{{- .Pinned -}}</dd>
+        </div>
+        {{- else }}
+        {{- end }}
+    </div>
     {{- if .LanguageTag.DisplayStr }}
-    <dt>Language</dt>
-    <dd>{{ .LanguageTag.DisplayStr }}</dd>
+    <div class="stats-item language" title="{{ .LanguageTag.DisplayStr }}">
+        <dt class="sr-only">Language</dt>
+        <dd>
+            <span class="sr-only">{{ .LanguageTag.DisplayStr }}</span>
+            <span aria-hidden="true">{{- .LanguageTag.TagStr -}}</span>
+        </dd>
+    </div>
+    {{- else }}
     {{- end }}
 </dl>
-<time aria-hidden="true" datetime="{{- .CreatedAt -}}">{{- .CreatedAt | timestampPrecise -}}</time>
-<div class="stats" role="group">
-    <div class="stats-item">
-        <span aria-hidden="true"><i class="fa fa-reply-all"></i> {{ .RepliesCount -}}</span>
-        <span class="sr-only">{{- .RepliesCount }} {{ if .RepliesCount | eq 1 }}reply{{ else }}replies{{ end -}}</span>
-    </div>
-    <div class="stats-item">
-        <span aria-hidden="true"><i class="fa fa-star"></i> {{ .FavouritesCount -}}</span>
-        <span class="sr-only">{{- .FavouritesCount }} {{ if .FavouritesCount | eq 1 }}favourite{{ else }}favourites{{ end -}}</span>
-    </div>
-    <div class="stats-item">
-        <span aria-hidden="true"><i class="fa fa-retweet"></i> {{ .ReblogsCount -}}</span>
-        <span class="sr-only">{{- .ReblogsCount }} {{ if .ReblogsCount | eq 1 }}boost{{ else }}boosts{{ end -}}</span>
-    </div>
-    {{- if .Pinned }}
-    <div class="stats-item">
-        <i class="fa fa-thumb-tack" aria-hidden="true"></i>
-        <span class="sr-only">pinned</span>
-    </div>
-    {{- end }}
-    {{- if .LanguageTag.DisplayStr }}
-    <div aria-hidden="true" class="stats-item language" title="Language: {{ .LanguageTag.DisplayStr }}">{{ .LanguageTag.TagStr }}</div>
-    {{- end }}
-</div>
 {{- end }}
