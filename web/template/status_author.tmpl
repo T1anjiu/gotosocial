@@ -19,25 +19,29 @@
 
 {{- with .Account }}
 <address>
-    <a rel="author" href="{{- .URL -}}">
+    <a
+        rel="author"
+        href="{{- .URL -}}"
+        title="Open profile"
+    >
         <img
             class="avatar"
-            aria-hidden="true"
             src="{{- .Avatar -}}"
-            alt=""
+            alt="Avatar for {{ .Username -}}"
+            title="Avatar for {{ .Username -}}"
             loading="lazy"
         >
         <dl class="author-strap">
             <dt class="sr-only">Display name</dt>
-            <dl class="displayname text-cutoff">
+            <dd class="displayname text-cutoff">
                 {{- if .DisplayName -}}
                 {{- emojify .Emojis (escape .DisplayName) -}}
                 {{- else -}}
                 {{- .Username -}}
                 {{- end -}}
-            </dl>
+            </dd>
             <dt class="sr-only">Username</dt>
-            <dl class="username text-cutoff">@{{- .Acct -}}</dl>
+            <dd class="username text-cutoff">@{{- .Acct -}}</dd>
         </dl>
     </a>
 </address>

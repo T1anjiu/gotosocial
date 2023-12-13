@@ -243,6 +243,7 @@ main {
 				border-radius: $br;
 				padding: 0.5rem;
 				white-space: pre;
+				overflow-x: auto;
 
 				code {
 					/* Code inside a pre block, ie.,

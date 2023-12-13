@@ -20,13 +20,21 @@
 {{- with . }}
 <main class="profile">
     <header class="profile-header">
-        <h2 class="sr-only">Profile for&nbsp;{{- .account.Username -}}</h2>
-        <div class="header-image-wrapper" aria-hidden="true">
-            <img src="{{- .account.Header -}}" alt=""/>
+        <h2 class="sr-only">Profile for {{ .account.Username -}}</h2>
+        <div class="header-image-wrapper">
+            <img
+                src="{{- .account.Header -}}"
+                alt="Header for {{ .account.Username -}}"
+                title="Header for {{ .account.Username -}}"
+            />
         </div>
         <div class="basic-info">
-            <a class="avatar" aria-hidden="true" href="{{- .account.Avatar -}}">
-                <img src="{{- .account.Avatar -}}" alt="">
+            <a class="avatar" href="{{- .account.Avatar -}}">
+                <img
+                    src="{{- .account.Avatar -}}"
+                    alt="Avatar for {{ .account.Username -}}"
+                    title="Avatar for {{ .account.Username -}}"
+                />
             </a>
             <dl class="namerole">
                 <dt class="sr-only">Display name</dt>

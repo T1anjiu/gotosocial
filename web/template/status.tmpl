@@ -27,10 +27,11 @@
 
 {{- with . }}
 <header class="status-author">
-    <h4 class="sr-only">Post by</h4>
+    <h4 class="sr-only">Post by {{ .Account.Username -}}</h4>
     {{- include "status_author.tmpl" . | indent 1 | noescape }}
 </header>
 <section class="status-body">
+    <h4 class="sr-only">Post body</h4>
     {{- if .SpoilerText }}
     <details class="text-spoiler">
         <summary>
@@ -63,5 +64,12 @@
 <aside class="status-info">
     {{- include "status_info.tmpl" . | indent 1 | noescape }}
 </aside>
-<a data-nosnippet href="{{- .URL -}}" class="status-link">Open thread</a>
+<a
+    class="status-link"
+    data-nosnippet
+    href="{{- .URL -}}"
+    title="Open thread"
+>
+    Open thread
+</a>
 {{- end }}
