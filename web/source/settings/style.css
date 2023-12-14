@@ -20,7 +20,7 @@ body {
 	grid-template-rows: auto 1fr;
 }
 
-.content {
+.page-content {
 	grid-column: 1 / span 3; /* stretch entire width, to fit panel + sidebar nav */
 	width: 100%;
 }
