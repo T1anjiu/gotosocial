@@ -26,12 +26,12 @@
 {{- end -}}
 
 {{- with . }}
-<header class="status-author">
+<header class="status-header">
     <h4 class="sr-only">Post by {{ .Account.Username -}}</h4>
     {{- include "status_author.tmpl" . | indent 1 | noescape }}
 </header>
 <section class="status-body">
-    <h4 class="sr-only">Post body</h4>
+    <h5 class="sr-only">Post body</h5>
     {{- if .SpoilerText }}
     <details class="text-spoiler">
         <summary>

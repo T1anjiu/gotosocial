@@ -46,8 +46,19 @@
 </video>
 {{- end }}
 
+{{- /* Produces something like "1 attachment", "2 attachments", etc */ -}}
+{{- define "attachmentsHeading" -}}
+{{- (len .) }}{{- if eq (len .) 1 }} attachment{{- else }} attachments{{- end -}}
+{{- end -}}
+
+{{- /* Produces something like "media photoswipe-gallery odd single" */ -}}
+{{- define "galleryClass" -}}
+media photoswipe-gallery {{ (len .) | oddOrEven }} {{ if eq (len .) 1 }}single{{ else if eq (len .) 2 }}double{{ end }}
+{{- end -}}
+
 {{- with .MediaAttachments }}
-<div class="media photoswipe-gallery {{ (len .) | oddOrEven }} {{ if eq (len .) 1 }}single{{ else if eq (len .) 2 }}double{{- end -}}">
+<h5 class="sr-only">{{- template "attachmentsHeading" . -}}</h5>
+<div class="{{- include "galleryClass" . | noescapeAttr -}}">
     {{- range $index, $media := . }}
     <div class="media-wrapper">
         <details class="{{- $media.Type -}}-spoiler media-spoiler" {{- if not $media.Sensitive }} open{{- end -}}>
