@@ -29,6 +29,7 @@ main {
 .thread {
 	display: flex;
 	flex-direction: column;
+	gap: 0.4rem;
 }
 
 .status {
@@ -37,7 +38,6 @@ main {
 	border: $boxshadow-border;
 	border-radius: $br;
 	position: relative;
-	margin-bottom: $br;
 	padding-top: 0.75rem;
 
 	a {
@@ -166,6 +166,28 @@ main {
 			line-height: 1.6rem;
 			width: 100%;
 
+			/*
+				Restyle lists; remove left-padding,
+				replace dot with orange dot.
+			*/
+			ul {
+				padding-left: 1rem;
+				list-style: none;
+			}
+			
+			ul li::before {
+				content: "\2022";
+				color: $border-accent;
+				font-weight: bold;
+				display: inline-block;
+				width: 1rem;
+				margin-left: -1rem;
+			}
+
+			/*
+				Normalize header sizes to fit better
+				with the line-height we use for statuses.
+			*/
 			h1 {
 				margin: 0;
 				font-size: 1.8rem;
@@ -196,6 +218,10 @@ main {
 				line-height: initial;
 			}
 
+			/*
+				Outdent block quotes a bit; use
+				orange stripe for left border.
+			*/
 			blockquote {
 				padding: 0.5rem 0 0.5rem 0.5rem;
 				border-left: 0.2rem solid $border-accent;
@@ -203,23 +229,32 @@ main {
 				font-style: italic;
 			}
 
+			/*
+				Nice dashed orange line for horizontal rules.
+			*/
 			hr {
-				border: 1px dashed $border-accent;
+				border-top: 1px dashed $border-accent;
 				padding: 0.5rem;
-			} 
+			}
 
 			pre, code {
 				background-color: $gray2;
 			}
 
+			/*
+				Just code on its own inside status
+				content, ie, `here is some code`.
+			*/
 			code {
-				/* Just code on its own inside status
-				content, ie, `here is some code` */
 				padding: 0.25rem;
 				border-radius: $br-inner;
 				white-space: pre-wrap;
 			}
 
+			/*
+				Restyle Prism code highlighting toolbar
+				plugin buttons to our own button style. 
+			*/
 			.code-toolbar .toolbar {
 				margin-right: 0.5rem;
 				display: flex;
@@ -248,9 +283,14 @@ main {
 				white-space: pre;
 				overflow-x: auto;
 
+				/* 
+					Code inside a pre block, ie.,
+					
+					```
+					here is some code
+					```
+				*/
 				code {
-					/* Code inside a pre block, ie.,
-					```\nhere is some code\n``` */
 					width: 100%;
 					padding: 0;
 					white-space: pre;
@@ -266,18 +306,6 @@ main {
 			img[alt~="!center"] {
 				display: block;
 			}
-		}
-
-		.emoji {
-			transition: 0.1s;
-		}
-
-		.emoji:hover, .emoji:active {
-			transform: scale(2);
-			background-color: $bg;
-			box-shadow: $boxshadow;
-			border: $boxshadow-border;
-			border-radius: $br-inner;
 		}
 
 		.poll {
@@ -546,13 +574,10 @@ main {
 		/* bottom left, bottom right */
 		border-bottom-left-radius: $br;
 		border-bottom-right-radius: $br;
-		margin-bottom: 0;
 	}
 
 	&.expanded {
 		background: $status-focus-bg;
-		padding-bottom: 0;
-
 		.status-info {
 			background: $status-focus-info-bg;
 		}
