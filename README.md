@@ -3,9 +3,18 @@
 GoToSocial is an [ActivityPub](https://activitypub.rocks/) social network server, written in Golang.
 
 With GoToSocial, you can keep in touch with your friends, post, read, and share images and articles. All without being tracked or advertised to!
-
+<br>
+<br>
 <p align="middle">
   <img src="./docs/assets/sloth.png" width="300"/>
+</p>
+<br>
+<p align="center">
+    <a href="https://github.com/superseriousbusiness/gotosocial/"><img src="https://img.shields.io/badge/Go-1.21-blue?style=for-the-badge&color=%238d4bbb" alt="Go v1.21"></a>
+    <a href="https://github.com/superseriousbusiness/gotosocial/"><img src="https://img.shields.io/badge/STABLE-0.13.0-blue?style=for-the-badge&color=%230aa344" alt="Latest Stable Version"></a>
+    <a href="https://github.com/superseriousbusiness/gotosocial/"><img src="https://img.shields.io/badge/UNSTABLE-0.13.x--DEV-blue?style=for-the-badge&color=%23ff0097" alt="Latest Unstable Version"></a>
+    <a href="https://github.com/superseriousbusiness/gotosocial/"><img src="https://img.shields.io/badge/SIZE-19.8MB-blue?style=for-the-badge&color=%23f0c239" alt="Download Size"></a>
+    <a href="https://raw.githubusercontent.com/superseriousbusiness/gotosocial/main/LICENSE"><img src="https://img.shields.io/badge/LICENSE-AGPL--3.0-blue?style=for-the-badge&color=%23FF0000" alt="AGPL-3.0 License"></a>
 </p>
 
 **GoToSocial is still [ALPHA SOFTWARE](https://en.wikipedia.org/wiki/Software_release_life_cycle#Alpha)**. It is already deployable and useable, and it federates cleanly with many other Fediverse servers (not yet all). However, many things are not yet implemented, and there are plenty of bugs! We foresee entering beta around the beginning of 2024.
